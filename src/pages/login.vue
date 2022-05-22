@@ -154,7 +154,7 @@ export default defineComponent({
   width: 100%;
   height: 80px;
   padding: 0px 8px;
-  border-bottom: 1px solid #4d4d4d;
+  border-bottom: 1px solid #c4c4c4;
   display: flex;
   position: relative;
   color: white;
@@ -200,6 +200,7 @@ export default defineComponent({
   background-color: rgb(120, 186, 244);
   border-radius: 10px 10px 0px 0px;
   cursor: pointer;
+  text-align: center;
 }
 .loginbar .tabs-container .tab-button:nth-child(2) {
   line-height: 25px;

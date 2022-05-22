@@ -1,14 +1,17 @@
 <template>
-  <login-page></login-page>
+  <!-- <login-page></login-page> -->
+  <task-page></task-page>
 </template>
 
 <script>
-import LoginPage from "./pages/login.vue";
+// import LoginPage from "./pages/login.vue";
+import TaskPage from "./pages/task.vue";
 
 export default {
   name: "App",
   components: {
-    LoginPage,
+    // LoginPage,
+    TaskPage,
   },
 };
 </script>
@@ -18,7 +21,24 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
+  font-family: "Inter";
+}
+
+input {
+  border: 0px;
+  width: 100%;
+  height: 70px;
+  border-radius: 15px;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 34px;
+
+  color: #6d6b6b;
+  text-align: left;
+  text-indent: 12px;
 }
 </style>
