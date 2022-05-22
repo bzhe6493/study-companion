@@ -32,6 +32,60 @@
         />
       </div>
 
+      <div class="form-item time-form-item">
+        <label for="time"> Time (How long the task is expected to take) </label>
+        <div class="time-wrapper">
+          <input
+            class="time1"
+            type="text"
+            name="time1"
+            id="time1"
+            v-model="time1"
+            placeholder=""
+          />
+          <img class="dot2" src="../assets/dot2.png" alt="dot" />
+          <input
+            class="time2"
+            type="text"
+            name="time2"
+            id="time2"
+            v-model="time2"
+            placeholder=""
+          />
+        </div>
+      </div>
+
+      <div class="form-item priority-form-item">
+        <label for="priority"> Priority rating </label>
+        <div class="priority-wrapper">
+          <div class="low">Low</div>
+          <div class="med">Med</div>
+          <div class="high">High</div>
+        </div>
+      </div>
+
+      <div class="form-item deadline-form-item">
+        <label for="deadline"> Task deadline </label>
+        <input
+          type="text"
+          name="deadline"
+          id="deadline"
+          v-model="deadlineInner"
+          placeholder="Date"
+        />
+      </div>
+
+      <div class="form-item status-form-item">
+        <label for="status"> Status (Done/Not Done) </label>
+        <input
+          type="text"
+          name="status"
+          id="status"
+          v-model="statusInner"
+          placeholder=""
+        />
+      </div>
+
       <div class="form-item">
         <input type="button" value="Cancel" @click="cancel" />
         <input type="button" value="Save" @click="save" />
@@ -50,6 +104,12 @@ export default {
     deadline: String,
     status: String,
     onChangeField: Function,
+  },
+  data() {
+    return {
+      time1: "",
+      time2: "",
+    };
   },
   computed: {
     titleInner: {
@@ -144,8 +204,58 @@ export default {
 }
 .main-body .form-item label {
   display: block;
+  margin-bottom: 8px;
 }
 .main-body .form-item input {
   display: block;
+}
+
+.main-body .form-item.time-form-item {
+  width: 600px;
+}
+.main-body .form-item.time-form-item .time-wrapper {
+  display: flex;
+  align-items: center;
+  height: 70px;
+}
+.main-body .form-item.time-form-item input {
+  width: 100px;
+  display: inline-block;
+}
+.main-body .form-item.time-form-item .dot2 {
+  margin: 0 12px;
+}
+
+.main-body .form-item.priority-form-item {
+  width: 400px;
+}
+.main-body .form-item.priority-form-item .priority-wrapper {
+  display: flex;
+  align-items: center;
+  height: 70px;
+}
+.main-body .form-item.priority-form-item .priority-wrapper div {
+  width: 100px;
+  background-color: white;
+  height: 60px;
+  line-height: 60px;
+  margin-right: 20px;
+  border-radius: 15px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.main-body .form-item.deadline-form-item {
+  width: 600px;
+}
+.main-body .form-item.deadline-form-item input {
+  width: 252px;
+}
+
+.main-body .form-item.status-form-item {
+  width: 400px;
+}
+.main-body .form-item.status-form-item input {
+  width: 340px;
 }
 </style>

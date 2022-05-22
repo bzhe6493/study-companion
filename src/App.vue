@@ -18,11 +18,10 @@ export default {
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Inter" Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-  font-family: "Inter";
+  color: #6d6b6b;
 }
 
 input {
@@ -40,5 +39,15 @@ input {
   color: #6d6b6b;
   text-align: left;
   text-indent: 12px;
+}
+
+input[type="button"] {
+  width: 128px;
+  height: 82px;
+  background: #91d1ff;
+  color: white;
+  text-align: center;
+  text-indent: 0;
+  cursor: pointer;
 }
 </style>

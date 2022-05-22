@@ -225,6 +225,7 @@ export default defineComponent({
 }
 .main .auth-form .form-item label {
   display: block;
+  margin-bottom: 8px;
 }
 .main .auth-form .form-item input {
   display: block;
