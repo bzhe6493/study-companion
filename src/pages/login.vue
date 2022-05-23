@@ -5,7 +5,7 @@
 
       <div class="sign-buttons">
         <div class="sign-button">Sign up</div>
-        <div class="sign-button">Login in</div>
+        <div class="sign-button">Log in</div>
       </div>
 
       <div class="tabs-container">
@@ -144,7 +144,7 @@ export default defineComponent({
 </script>
 <style lang="css" scoped>
 .container {
-  width: 1280px;
+  width: 1440px;
   margin: 0 auto;
   background-color: #ffffff;
 }
@@ -209,6 +209,7 @@ export default defineComponent({
 /* main area */
 .main {
   width: 100%;
+  padding: 0 38px;
   position: relative;
 }
 /* draw big form */

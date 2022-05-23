@@ -1,17 +1,20 @@
 <template>
   <!-- <login-page></login-page> -->
-  <task-page></task-page>
+  <!-- <task-page></task-page> -->
+  <kanban-page></kanban-page>
 </template>
 
 <script>
 // import LoginPage from "./pages/login.vue";
-import TaskPage from "./pages/task.vue";
+// import TaskPage from "./pages/task.vue";
+import KanbanPage from "./pages/kanban.vue";
 
 export default {
   name: "App",
   components: {
     // LoginPage,
-    TaskPage,
+    // TaskPage,
+    KanbanPage,
   },
 };
 </script>
@@ -22,6 +25,10 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #6d6b6b;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 input {

@@ -177,8 +177,8 @@ export default {
 }
 .title-bar .pencil-wrapper {
   margin-left: calc(100% - 220px);
-  /* display: inline-block; */
   overflow: hidden;
+  cursor: pointer;
 }
 .title-bar .pencil {
   width: 30px;

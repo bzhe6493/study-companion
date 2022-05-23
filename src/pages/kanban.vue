@@ -17,36 +17,33 @@
     </div>
 
     <div class="main">
-      <h2>Task List</h2>
+      <h2>Kanban Board</h2>
 
-      <div class="add-area flex" @click="addTask">
+      <!-- <div class="add-area flex" @click="addTask">
         <img class="plus" src="../assets/plus-mini.png" alt="plus" />
         <span class="new">NEW</span>
-      </div>
+      </div> -->
+      <!-- @addCard="addCard.bind(null, name)" -->
 
-      <task-card
-        v-for="(task, index) in tasks"
-        :key="index"
-        :index="index"
-        :title="task.title"
-        :subject="task.subject"
-        :time="task.time"
-        :priority="task.priority"
-        :deadline="task.deadline"
-        :status="status"
-        @onChangeField="onChangeField"
-      ></task-card>
+      <div class="card-container">
+        <kanban-card
+          v-for="(name, index) in ['Not started', 'In progress', 'Completed']"
+          :key="index"
+          :index="index"
+          :title="name"
+        ></kanban-card>
+      </div>
     </div>
   </div>
 </template>
 <script>
 import { defineComponent } from "vue";
-import TaskCard from "../components/task-card.vue";
+import KanbanCard from "../components/kanban-card.vue";
 
 export default defineComponent({
-  name: "taskPage",
+  name: "kanbanPage",
   components: {
-    TaskCard,
+    KanbanCard,
   },
   props: {},
   data() {
@@ -55,16 +52,6 @@ export default defineComponent({
     };
   },
   methods: {
-    addTask() {
-      this.tasks.push({
-        title: "",
-        subject: "",
-        time: ":",
-        priority: "",
-        deadline: "",
-        status: "",
-      });
-    },
     deleteTask(index) {
       this.tasks.splice(index, 1);
     },
@@ -174,7 +161,6 @@ export default defineComponent({
   font-size: 30px;
   margin-right: 12px;
 }
-
 .main .add-area .new {
   font-family: "Inter";
   font-style: normal;
@@ -182,5 +168,12 @@ export default defineComponent({
   font-size: 20px;
   /* line-height: 24px; */
   color: #c4c4c4;
+}
+.main .card-container {
+  display: flex;
+  justify-content: space-between;
+}
+.main .card-container div.container-2 {
+  width: 31%;
 }
 </style>
