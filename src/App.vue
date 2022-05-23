@@ -1,20 +1,23 @@
 <template>
   <!-- <login-page></login-page> -->
   <!-- <task-page></task-page> -->
-  <kanban-page></kanban-page>
+  <!-- <kanban-page></kanban-page> -->
+  <pomodoro-page></pomodoro-page>
 </template>
 
 <script>
 // import LoginPage from "./pages/login.vue";
 // import TaskPage from "./pages/task.vue";
-import KanbanPage from "./pages/kanban.vue";
+// import KanbanPage from "./pages/kanban.vue";
+import PomodoroPage from "./pages/pomodoro.vue";
 
 export default {
   name: "App",
   components: {
     // LoginPage,
     // TaskPage,
-    KanbanPage,
+    // KanbanPage,
+    PomodoroPage,
   },
 };
 </script>
