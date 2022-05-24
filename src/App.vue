@@ -2,14 +2,16 @@
   <!-- <login-page></login-page> -->
   <!-- <task-page></task-page> -->
   <!-- <kanban-page></kanban-page> -->
-  <pomodoro-page></pomodoro-page>
+  <!-- <pomodoro-page></pomodoro-page> -->
+  <aux-page></aux-page>
 </template>
 
 <script>
 // import LoginPage from "./pages/login.vue";
 // import TaskPage from "./pages/task.vue";
 // import KanbanPage from "./pages/kanban.vue";
-import PomodoroPage from "./pages/pomodoro.vue";
+// import PomodoroPage from "./pages/pomodoro.vue";
+import AuxPage from "./pages/aux.vue";
 
 export default {
   name: "App",
@@ -17,7 +19,8 @@ export default {
     // LoginPage,
     // TaskPage,
     // KanbanPage,
-    PomodoroPage,
+    // PomodoroPage,
+    AuxPage,
   },
 };
 </script>
