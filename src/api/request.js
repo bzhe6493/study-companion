@@ -1,7 +1,7 @@
 const https = require("https");
 
-const app_id = "<my app_id>";
-const app_key = "<my app_key>";
+const app_id = "9c5bebb3";
+const app_key = "f0e0b37d850ff978bf7b3fa672314e63";
 const wordId = "ace";
 const fields = "pronunciations";
 const strictMatch = "false";
