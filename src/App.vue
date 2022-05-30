@@ -1,10 +1,24 @@
 <template>
-  <login-page v-if="routeName === 'signin'" :signUp="true"></login-page>
-  <login-page v-if="routeName === 'login'" :signUp="false"></login-page>
-  <task-page v-if="routeName === 'task'"></task-page>
-  <kanban-page v-if="routeName === 'kanban'"></kanban-page>
-  <pomodoro-page v-if="routeName === 'pomodoro'"></pomodoro-page>
-  <aux-page v-if="routeName === 'aux'"></aux-page>
+  <login-page
+    v-if="routeName === 'signin'"
+    :signUp="true"
+    @changeRoute="changeRoute"
+  ></login-page>
+  <login-page
+    v-if="routeName === 'login'"
+    :signUp="false"
+    @changeRoute="changeRoute"
+  ></login-page>
+  <task-page v-if="routeName === 'task'" @changeRoute="changeRoute"></task-page>
+  <kanban-page
+    v-if="routeName === 'kanban'"
+    @changeRoute="changeRoute"
+  ></kanban-page>
+  <pomodoro-page
+    v-if="routeName === 'pomodoro'"
+    @changeRoute="changeRoute"
+  ></pomodoro-page>
+  <aux-page v-if="routeName === 'aux'" @changeRoute="changeRoute"></aux-page>
 </template>
 
 <script>
@@ -20,6 +34,11 @@ export default {
     return {
       routeName: "signin",
     };
+  },
+  methods: {
+    changeRoute(v) {
+      this.routeName = v;
+    },
   },
   components: {
     LoginPage,
@@ -68,5 +87,9 @@ input[type="button"] {
   text-align: center;
   text-indent: 0;
   cursor: pointer;
+}
+
+div.route-active {
+  background-color: #538fbb !important;
 }
 </style>

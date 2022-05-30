@@ -26,15 +26,23 @@
       </div>
 
       <div class="sign-buttons">
-        <div class="sign-button">Sign up</div>
-        <div class="sign-button">Log in</div>
+        <div class="sign-button" @click="to('signin')">Sign up</div>
+        <div class="sign-button" @click="to('login')">Log in</div>
       </div>
 
       <div class="tabs-container">
-        <div class="tab-button">Task List</div>
-        <div class="tab-button">Kanban Board</div>
-        <div class="tab-button">Pomodoro</div>
-        <div class="tab-button">Auxiliary</div>
+        <div
+          :class="{
+            'tab-button': true,
+            'route-active': true,
+          }"
+          @click="to('task')"
+        >
+          Task List
+        </div>
+        <div class="tab-button" @click="to('kanban')">Kanban Board</div>
+        <div class="tab-button" @click="to('pomodoro')">Pomodoro</div>
+        <div class="tab-button" @click="to('aux')">Auxiliary</div>
       </div>
     </div>
 
@@ -77,6 +85,10 @@ export default defineComponent({
     };
   },
   methods: {
+    to(v) {
+      console.log(v);
+      this.$emit("changeRoute", v);
+    },
     addTask() {
       this.tasks.push({
         title: "",
