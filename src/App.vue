@@ -1,25 +1,31 @@
 <template>
-  <!-- <login-page></login-page> -->
-  <!-- <task-page></task-page> -->
-  <!-- <kanban-page></kanban-page> -->
-  <!-- <pomodoro-page></pomodoro-page> -->
-  <aux-page></aux-page>
+  <login-page v-if="routeName === 'signin'" :signUp="true"></login-page>
+  <login-page v-if="routeName === 'login'" :signUp="false"></login-page>
+  <task-page v-if="routeName === 'task'"></task-page>
+  <kanban-page v-if="routeName === 'kanban'"></kanban-page>
+  <pomodoro-page v-if="routeName === 'pomodoro'"></pomodoro-page>
+  <aux-page v-if="routeName === 'aux'"></aux-page>
 </template>
 
 <script>
-// import LoginPage from "./pages/login.vue";
-// import TaskPage from "./pages/task.vue";
-// import KanbanPage from "./pages/kanban.vue";
-// import PomodoroPage from "./pages/pomodoro.vue";
+import LoginPage from "./pages/login.vue";
+import TaskPage from "./pages/task.vue";
+import KanbanPage from "./pages/kanban.vue";
+import PomodoroPage from "./pages/pomodoro.vue";
 import AuxPage from "./pages/aux.vue";
 
 export default {
   name: "App",
+  data() {
+    return {
+      routeName: "signin",
+    };
+  },
   components: {
-    // LoginPage,
-    // TaskPage,
-    // KanbanPage,
-    // PomodoroPage,
+    LoginPage,
+    TaskPage,
+    KanbanPage,
+    PomodoroPage,
     AuxPage,
   },
 };

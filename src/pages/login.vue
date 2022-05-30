@@ -82,10 +82,10 @@
       </form>
 
       <div class="auth-paint-pic boy-pic">
-        <img src="" alt="boy" />
+        <img class="boy" src="../assets/boy.png" alt="boy" />
       </div>
       <div class="auth-paint-pic girl-pic">
-        <img src="" alt="girl" />
+        <img class="girl" src="../assets/girl.png" alt="girl" />
       </div>
     </div>
   </div>
@@ -234,12 +234,33 @@ export default defineComponent({
   padding: 0 38px;
   position: relative;
 }
+.main h2 {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 85px;
+  line-height: 103px;
+
+  color: #258dec;
+  margin: 0;
+  margin-top: 42px;
+}
+.main p {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 23px;
+  line-height: 28px;
+
+  text-align: right;
+  color: #048ef1;
+}
 /* draw big form */
 .main .auth-form {
   margin: 0 auto;
   width: 720px;
   height: 580px;
-  border: 1px solid #4d4d4d;
+  border: 1px solid blue;
 }
 .main .auth-form .form-item {
   font-size: 22px;
@@ -262,15 +283,22 @@ export default defineComponent({
 
   width: 270px;
   height: 400px;
-  background-color: aliceblue;
 }
 .main .auth-paint-pic.boy-pic {
   left: 0;
   bottom: 0;
 }
+
+.main .auth-paint-pic.boy-pic img.boy {
+  width: 320px;
+}
+
 .main .auth-paint-pic.girl-pic {
   left: 100%;
   bottom: 0;
-  margin-left: -270px;
+  margin-left: -300px;
+}
+.main .auth-paint-pic.girl-pic img.girl {
+  width: 320px;
 }
 </style>
