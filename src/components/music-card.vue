@@ -7,10 +7,16 @@
       <play-item
         v-for="item in playList"
         :key="item.key"
-        :active="item.key === 'asItWas'"
+        :name="item.key"
         :imgUrl="item.imgUrl"
+        :mp3Url="item.mp3Url"
         :primaryTitle="item.primaryTitle"
         :secondaryTitle="item.secondaryTitle"
+        :playing="playing"
+        :activeKey="activeKey"
+        @go="go"
+        @pause="pause"
+        @play="play"
       >
       </play-item>
     </div>
@@ -20,7 +26,8 @@
 import { defineComponent } from "vue";
 import playItem from "./play-item";
 import asItWas from "../assets/music/asItWas.png";
-import bigEnergy from "../assets/music/bigEnergy.png";
+// import bigEnergy from "../assets/music/bigEnergy.png";
+import enemy from "../assets/music/enemy.png";
 import firstClass from "../assets/music/firstClass.png";
 import moscowMule from "../assets/music/moscowMule.png";
 import waitForU from "../assets/music/waitForU.png";
@@ -31,7 +38,9 @@ export default defineComponent({
   },
   data() {
     return {
-      cards: [],
+      activeIndex: 0,
+      activeKey: "asItWas",
+      playing: null,
       playList: [
         {
           key: "asItWas",
@@ -41,8 +50,8 @@ export default defineComponent({
           secondaryTitle: "Harry Styles",
         },
         {
-          key: "bigEnergy",
-          imgUrl: bigEnergy,
+          key: "enemy",
+          imgUrl: enemy,
           mp3Url: "../assets/music/ENEMY - Imagine Dragons、J.I.D.mp3",
           primaryTitle: "ENEMY",
           secondaryTitle: "Imagine Dragons、J.I.D",
@@ -71,8 +80,49 @@ export default defineComponent({
       ],
     };
   },
-  computed: {},
-  methods: {},
+  methods: {
+    findItem(type) {
+      if (type === "next") {
+        const vIndex =
+          this.activeIndex === this.playList.length - 1
+            ? 0
+            : this.activeIndex + 1;
+        this.activeIndex = vIndex;
+        return this.playList[vIndex];
+      } else if (type === "pre") {
+        const vIndex =
+          this.activeIndex === 0
+            ? this.playList.length - 1
+            : this.activeIndex - 1;
+        this.activeIndex = vIndex;
+        return this.playList[vIndex];
+      }
+    },
+    go(key, type) {
+      if (type && !key) {
+        // go
+        const obj = this.findItem(type);
+        console.log(`- finded1 `, obj);
+        this.activeKey = obj?.key;
+        this.playing = obj?.key;
+      } else if (key && !type) {
+        // choose
+        console.log(`- finded2 `, key);
+        this.activeKey = key;
+        this.activeIndex = this.playList.findIndex((p) => p.key === key);
+        this.playing = key;
+      }
+    },
+    play() {
+      this.playing = this.activeKey;
+    },
+    pause() {
+      this.playing = null;
+    },
+  },
+  mounted() {
+    console.log(this.activeIndex, this.activeKey, this.playing);
+  },
 });
 </script>
 <style lang="css" scoped>

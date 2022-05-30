@@ -3,8 +3,9 @@
     <div
       :class="{
         item: true,
-        'active-item': active,
+        'active-item': activeKey === name,
       }"
+      @click="changeKey"
     >
       <div class="pic">
         <img :src="imgUrl" :alt="name" />
@@ -15,39 +16,128 @@
           <div class="pri-header">
             {{ primaryTitle }}
           </div>
-          <div class="sec-header" v-if="active">
+          <div class="sec-header" v-if="activeKey === name">
             &nbsp;-&nbsp;{{ secondaryTitle }}
           </div>
           <div class="sec-header" v-else>{{ secondaryTitle }}</div>
         </div>
-        <div class="body" v-if="active">
-          <img src="../assets/play-left.png" alt="play-left" />
-          <img src="../assets/play-pause.png" alt="play-left" />
-          <img src="../assets/play-right.png" alt="play-right" />
+        <div class="body" v-if="activeKey === name">
+          <img
+            src="../assets/play-left.png"
+            alt="play-left"
+            @click.stop="goPre"
+          />
+          <img
+            :src="started ? p1 : p2"
+            alt="play-left"
+            @click.stop="toggleMusic"
+          />
+          <img
+            src="../assets/play-right.png"
+            alt="play-right"
+            @click.stop="goNext"
+          />
         </div>
       </div>
-
-      <audio v-if="active" ref="musicRef" :src="mp3Url"></audio>
+      <audio ref="musicRef" hidden="true">
+        <source :src="getSource(name)" type="audio/mpeg" />
+      </audio>
     </div>
   </div>
 </template>
 <script>
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, watch, onMounted } from "vue";
+
+const m1 = require("../assets/music/As It Was - Harry Styles.mp3");
+const m2 = require("../assets/music/ENEMY - Imagine Dragons、J.I.D.mp3");
+const m3 = require("../assets/music/First Class - Jack Harlow.mp3");
+const m4 = require("../assets/music/Moscow Mule - Bad Bunny.mp3");
+const m5 = require("../assets/music/WAIT FOR U - Future、Drake、Tems.mp3");
+
+const p1 = require("../assets/play-pause.png");
+const p2 = require("../assets/play-one.png");
 
 export default defineComponent({
   props: {
-    active: Boolean,
     name: String,
     imgUrl: String,
     mp3Url: String,
     primaryTitle: String,
     secondaryTitle: String,
+    activeKey: {
+      type: [String, Object],
+    },
+    playing: {
+      type: [String, Object],
+    },
   },
-  methods: {},
-  setup() {
+  data() {
+    return {
+      p1,
+      p2,
+    };
+  },
+  methods: {
+    changeKey() {
+      this.$emit("go", this.name);
+    },
+    goPre() {
+      this.$emit("go", undefined, "pre");
+    },
+    goNext() {
+      this.$emit("go", undefined, "next");
+    },
+    toggleMusic() {
+      if (this.started) {
+        this.started = false;
+        this.$emit("pause");
+      } else {
+        this.started = true;
+        this.$emit("play");
+      }
+    },
+    getSource(source) {
+      switch (source) {
+        case "asItWas":
+          return m1;
+        case "enemy":
+          return m2;
+        case "firstClass":
+          return m3;
+        case "moscowMule":
+          return m4;
+        case "waitForU":
+          return m5;
+      }
+    },
+  },
+  setup(props) {
     const musicRef = ref();
+    const started = ref(props.playing === props.name);
+
+    watch(
+      () => props.playing,
+      () => {
+        if (props.playing === props.name) {
+          started.value = true;
+          musicRef.value?.play();
+        } else {
+          started.value = false;
+          musicRef.value?.pause();
+        }
+      }
+    );
+
+    onMounted(() => {
+      console.log(musicRef.value);
+      // musicRef.value?.play();
+      // playing.value = true;
+      // musicRef.value && musicRef.value.play();
+    });
+
     return {
       musicRef,
+      started,
     };
   },
 });

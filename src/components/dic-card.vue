@@ -5,9 +5,9 @@
     </div>
     <div class="main-body">
       <header>
-        <input type="text" placeholder="Search for words" />
+        <input type="text" placeholder="Search for words" v-model="word" />
 
-        <div class="search-wrapper">
+        <div class="search-wrapper" v-on:click="getWord">
           <img src="../assets/search.png" alt="search" />
         </div>
       </header>
@@ -18,15 +18,22 @@
 </template>
 <script>
 import { defineComponent } from "vue";
+import getWordInfo from "../api/request";
 
 export default defineComponent({
   data() {
     return {
       cards: [],
+      word: "",
     };
   },
   computed: {},
-  methods: {},
+  methods: {
+    async getWord() {
+      const data = await getWordInfo(this.word);
+      console.log(data);
+    },
+  },
 });
 </script>
 <style lang="css" scoped>
