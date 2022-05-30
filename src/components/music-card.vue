@@ -3,16 +3,72 @@
     <div class="title-bar">
       <h2 class="title">Music</h2>
     </div>
-    <div class="main-body"></div>
+    <div class="main-body">
+      <play-item
+        v-for="item in playList"
+        :key="item.key"
+        :active="item.key === 'asItWas'"
+        :imgUrl="item.imgUrl"
+        :primaryTitle="item.primaryTitle"
+        :secondaryTitle="item.secondaryTitle"
+      >
+      </play-item>
+    </div>
   </div>
 </template>
 <script>
 import { defineComponent } from "vue";
+import playItem from "./play-item";
+import asItWas from "../assets/music/asItWas.png";
+import bigEnergy from "../assets/music/bigEnergy.png";
+import firstClass from "../assets/music/firstClass.png";
+import moscowMule from "../assets/music/moscowMule.png";
+import waitForU from "../assets/music/waitForU.png";
 
 export default defineComponent({
+  components: {
+    playItem,
+  },
   data() {
     return {
       cards: [],
+      playList: [
+        {
+          key: "asItWas",
+          imgUrl: asItWas,
+          mp3Url: "../assets/music/As It Was - Harry Styles.mp3",
+          primaryTitle: "As It Was",
+          secondaryTitle: "Harry Styles",
+        },
+        {
+          key: "bigEnergy",
+          imgUrl: bigEnergy,
+          mp3Url: "../assets/music/ENEMY - Imagine Dragons、J.I.D.mp3",
+          primaryTitle: "ENEMY",
+          secondaryTitle: "Imagine Dragons、J.I.D",
+        },
+        {
+          key: "firstClass",
+          imgUrl: firstClass,
+          mp3Url: "../assets/music/First Class - Jack Harlow.mp3",
+          primaryTitle: "First Class",
+          secondaryTitle: "Jack Harlow",
+        },
+        {
+          key: "moscowMule",
+          imgUrl: moscowMule,
+          mp3Url: "../assets/music/Moscow Mule - Bad Bunny.mp3",
+          primaryTitle: "Moscow Mule",
+          secondaryTitle: "Bad Bunny",
+        },
+        {
+          key: "waitForU",
+          imgUrl: waitForU,
+          mp3Url: "../assets/music/WAIT FOR U - Future、Drake、Tems.mp3",
+          primaryTitle: "WAIT FOR U",
+          secondaryTitle: "Future、Drake、Tems",
+        },
+      ],
     };
   },
   computed: {},
@@ -75,9 +131,9 @@ export default defineComponent({
 
 .main-body {
   width: 100%;
-  min-height: 660px;
-  max-height: 860px;
-  padding: 25px 15px;
+  height: 660px;
+  padding: 20px 35px;
+  padding-top: 5px;
   box-sizing: border-box;
 
   background-color: #eeebeb;

@@ -3,7 +3,17 @@
     <div class="title-bar">
       <h2 class="title">Dictionary</h2>
     </div>
-    <div class="main-body"></div>
+    <div class="main-body">
+      <header>
+        <input type="text" placeholder="Search for words" />
+
+        <div class="search-wrapper">
+          <img src="../assets/search.png" alt="search" />
+        </div>
+      </header>
+
+      <div class="body"></div>
+    </div>
   </div>
 </template>
 <script>
@@ -75,8 +85,7 @@ export default defineComponent({
 
 .main-body {
   width: 100%;
-  min-height: 660px;
-  max-height: 860px;
+  height: 660px;
   padding: 25px 15px;
   box-sizing: border-box;
 
@@ -85,5 +94,27 @@ export default defineComponent({
 
   overflow-y: scroll;
   overflow-x: hidden;
+}
+
+.main-body header {
+  display: flex;
+}
+
+.main-body header .search-wrapper {
+  margin-left: 20px;
+  background-color: white;
+  width: 70px;
+  height: 70px;
+  border-radius: 12px;
+  display: flex;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.main-body .body {
+  min-height: 520px;
+  background-color: white;
+  margin: 6px;
+  margin-top: 20px;
 }
 </style>
