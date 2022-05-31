@@ -73,7 +73,9 @@ export default defineComponent({
     MusicCard,
     DicCard,
   },
-  props: {},
+  props: {
+    ifMobile: Boolean,
+  },
   data() {
     return {};
   },
@@ -88,8 +90,6 @@ export default defineComponent({
 </script>
 <style lang="css" scoped>
 .container {
-  width: 1440px;
-  margin: 0 auto;
   background-color: #ffffff;
 }
 

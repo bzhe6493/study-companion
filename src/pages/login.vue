@@ -1,5 +1,10 @@
 <template>
-  <div class="container">
+  <div
+    :class="{
+      container: true,
+      ifMobile: ifMobile,
+    }"
+  >
     <div class="loginbar">
       <div class="study-icon">
         <svg
@@ -46,11 +51,15 @@
         </div>
       </div>
 
-      <div class="tabs-container">
+      <div class="tabs-container" v-if="!ifMobile">
         <div class="tab-button" @click="to('task')">Task List</div>
         <div class="tab-button" @click="to('kanban')">Kanban Board</div>
         <div class="tab-button" @click="to('pomodoro')">Pomodoro</div>
         <div class="tab-button" @click="to('aux')">Auxiliary</div>
+      </div>
+
+      <div class="dot-wrapper" v-if="ifMobile">
+        <img src="../assets/dot4.png" alt="dot" />
       </div>
     </div>
 
@@ -126,6 +135,7 @@ export default defineComponent({
   name: "loginPage",
   props: {
     signUp: Boolean,
+    ifMobile: Boolean,
   },
   data() {
     return {
@@ -189,7 +199,6 @@ export default defineComponent({
       return passLogin;
     },
     submitForm(e) {
-      console.log("click submit");
       if (this.signUp) {
         this.onRegister();
       } else {
@@ -203,8 +212,6 @@ export default defineComponent({
 </script>
 <style lang="css" scoped>
 .container {
-  width: 1440px;
-  margin: 0 auto;
   background-color: #eeebeb;
 }
 
@@ -265,6 +272,11 @@ export default defineComponent({
 .loginbar .tabs-container .tab-button:nth-child(2) {
   line-height: 33px;
 }
+.loginbar .dot-wrapper {
+  position: absolute;
+  right: 10px;
+  top: 30px;
+}
 
 /* main area */
 .main {
@@ -272,6 +284,10 @@ export default defineComponent({
   padding: 0 38px;
   position: relative;
 }
+.container.ifMobile .main {
+  padding: 0 8px;
+}
+
 .main h2 {
   font-family: "Inter";
   font-style: normal;
@@ -283,6 +299,12 @@ export default defineComponent({
   margin: 0;
   margin-top: 42px;
 }
+
+.container.ifMobile .main h2 {
+  font-size: 35px;
+  line-height: 40px;
+}
+
 .main p {
   font-family: "Inter";
   font-style: normal;
@@ -293,22 +315,34 @@ export default defineComponent({
   text-align: right;
   color: #048ef1;
 }
+.container.ifMobile .main p {
+  font-size: 16px;
+  line-height: 20px;
+}
+
 /* draw big form */
 .main .auth-form {
   margin: 0 auto;
   width: 720px;
   height: 580px;
 }
-/* .main .auth-form input:not(last-child) {
-  width: 640px;
-  height: 85px;
-} */
+.container.ifMobile .main .auth-form {
+  margin: 0 auto;
+  width: 100%;
+  height: 480px;
+}
 
 .main .auth-form .form-item {
   font-size: 22px;
   text-align: left;
   margin-bottom: 12px;
 }
+.container.ifMobile .main .auth-form .form-item {
+  margin: 0 auto;
+  margin-bottom: 12px;
+  width: 260px;
+}
+
 .main .auth-form .form-item label {
   display: block;
   margin-bottom: 8px;
@@ -343,6 +377,27 @@ export default defineComponent({
   color: #6d6b6b;
 }
 
+.container.ifMobile .main .auth-form .form-item label {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 21px;
+}
+
+.container.ifMobile .main .auth-form .form-item input {
+  width: 260px;
+  height: 40px;
+  border-radius: 10px;
+}
+
+.container.ifMobile .main .auth-form .form-item input.last {
+  width: 100px;
+  height: 36px;
+  border-radius: 10px;
+  font-size: 20px;
+}
+
 /* draw two pictures */
 .main .auth-paint-pic {
   position: absolute;
@@ -357,6 +412,9 @@ export default defineComponent({
 .main .auth-paint-pic.boy-pic img.boy {
   width: 320px;
 }
+.container.ifMobile .main .auth-paint-pic.boy-pic img.boy {
+  width: 120px;
+}
 
 .main .auth-paint-pic.girl-pic {
   left: 100%;
@@ -365,5 +423,8 @@ export default defineComponent({
 }
 .main .auth-paint-pic.girl-pic img.girl {
   width: 320px;
+}
+.container.ifMobile .main .auth-paint-pic.girl-pic img.girl {
+  width: 120px;
 }
 </style>

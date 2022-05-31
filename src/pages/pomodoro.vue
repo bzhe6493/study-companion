@@ -94,7 +94,9 @@ import PomodoroCard from "../components/pomodoro-card.vue";
 export default defineComponent({
   name: "pomorodoPage",
   components: { PomodoroCard },
-  props: {},
+  props: {
+    ifMobile: Boolean,
+  },
   data() {
     return {
       minutes: "00",
@@ -146,8 +148,6 @@ export default defineComponent({
 </script>
 <style lang="css" scoped>
 .container {
-  width: 1440px;
-  margin: 0 auto;
   background-color: #ffffff;
 }
 

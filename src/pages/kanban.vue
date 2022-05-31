@@ -75,7 +75,9 @@ export default defineComponent({
   components: {
     KanbanCard,
   },
-  props: {},
+  props: {
+    ifMobile: Boolean,
+  },
   data() {
     return {
       tasks: [],
@@ -98,8 +100,6 @@ export default defineComponent({
 </script>
 <style lang="css" scoped>
 .container {
-  width: 1440px;
-  margin: 0 auto;
   background-color: #ffffff;
 }
 
