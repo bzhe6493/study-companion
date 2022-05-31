@@ -58,8 +58,15 @@
         <div class="tab-button" @click="to('aux')">Auxiliary</div>
       </div>
 
-      <div class="dot-wrapper" v-if="ifMobile">
+      <div class="dot-wrapper" v-if="ifMobile" @click="toggleTabs">
         <img src="../assets/dot4.png" alt="dot" />
+      </div>
+
+      <div class="mobile-tabs-container" v-if="ifMobile" v-show="showTabs">
+        <div class="tab-button" @click="to('task')">Task List</div>
+        <div class="tab-button" @click="to('kanban')">Kanban Board</div>
+        <div class="tab-button" @click="to('pomodoro')">Pomodoro</div>
+        <div class="tab-button" @click="to('aux')">Auxiliary</div>
       </div>
     </div>
 
@@ -143,9 +150,13 @@ export default defineComponent({
       username: "",
       email: "",
       password: "",
+      showTabs: false,
     };
   },
   methods: {
+    toggleTabs() {
+      this.showTabs = !this.showTabs;
+    },
     to(v) {
       console.log(v);
       this.$emit("changeRoute", v);
@@ -274,8 +285,21 @@ export default defineComponent({
 }
 .loginbar .dot-wrapper {
   position: absolute;
-  right: 10px;
+  right: 20px;
   top: 30px;
+}
+.loginbar .mobile-tabs-container {
+  position: absolute;
+  z-index: 999;
+  background-color: white;
+  right: 20px;
+  top: 80px;
+  color: #848484;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 6px 12px;
+}
+.loginbar .mobile-tabs-container div {
+  margin-top: 6px;
 }
 
 /* main area */
