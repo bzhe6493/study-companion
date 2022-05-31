@@ -81,7 +81,7 @@
         </div>
 
         <div class="setter-container">
-          <pomodoro-card> </pomodoro-card>
+          <pomodoro-card @start="start" @stop="stop"> </pomodoro-card>
         </div>
       </div>
     </div>
@@ -99,12 +99,46 @@ export default defineComponent({
     return {
       minutes: "00",
       seconds: "00",
+      timer: null,
     };
   },
   methods: {
     to(v) {
       console.log(v);
       this.$emit("changeRoute", v);
+    },
+    start(minutes, seconds) {
+      this.minutes = minutes;
+      this.seconds = seconds;
+      clearTimeout(this.timer);
+      this.timer = setInterval(() => {
+        if (
+          parseInt(this.minutes, 10) === 0 &&
+          parseInt(this.seconds, 10) === 0
+        ) {
+          alert("Time out ");
+          clearTimeout(this.timer);
+        } else {
+          if (parseInt(this.seconds, 10) > 0) {
+            this.seconds = (parseInt(this.seconds, 10) - 1 + "").padStart(
+              2,
+              "0"
+            );
+          } else {
+            this.minutes = (parseInt(this.minutes, 10) - 1 + "").padStart(
+              2,
+              "0"
+            );
+            this.seconds = "59";
+          }
+        }
+      }, 1000);
+    },
+
+    stop() {
+      clearTimeout(this.timer);
+      this.seconds = "00";
+      this.minutes = "00";
     },
   },
   mounted() {},

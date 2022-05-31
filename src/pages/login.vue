@@ -93,7 +93,20 @@
         </div>
 
         <div class="form-item">
-          <input type="button" value="sign up" @click="submitForm" />
+          <input
+            class="last"
+            v-if="signUp"
+            type="button"
+            value="sign up"
+            @click="submitForm"
+          />
+          <input
+            class="last"
+            v-if="!signUp"
+            type="button"
+            value="log in"
+            @click="submitForm"
+          />
         </div>
       </form>
 
@@ -149,6 +162,7 @@ export default defineComponent({
       });
       localStorage.setItem("users", JSON.stringify(users));
       this.clearForm();
+      this.to("login");
     },
     onLogin() {
       console.log(this.loginName, this.password);
@@ -167,8 +181,11 @@ export default defineComponent({
           "Login name and password is not match, please sign up a user first ! "
         );
         return false;
+      } else {
+        this.clearForm();
+        this.to("task");
       }
-      this.clearForm();
+
       return passLogin;
     },
     submitForm(e) {
@@ -188,7 +205,7 @@ export default defineComponent({
 .container {
   width: 1440px;
   margin: 0 auto;
-  background-color: #ffffff;
+  background-color: #eeebeb;
 }
 
 /* top loginbar */
@@ -200,6 +217,7 @@ export default defineComponent({
   display: flex;
   position: relative;
   color: white;
+  background-color: white;
 }
 .loginbar .study-icon {
   width: 75px;
@@ -280,8 +298,12 @@ export default defineComponent({
   margin: 0 auto;
   width: 720px;
   height: 580px;
-  border: 1px solid blue;
 }
+/* .main .auth-form input:not(last-child) {
+  width: 640px;
+  height: 85px;
+} */
+
 .main .auth-form .form-item {
   font-size: 22px;
   text-align: left;
@@ -290,19 +312,42 @@ export default defineComponent({
 .main .auth-form .form-item label {
   display: block;
   margin-bottom: 8px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 39px;
+
+  color: #6d6b6b;
 }
 .main .auth-form .form-item input {
   display: block;
-  width: 320px;
-  height: 38px;
+  width: 100%;
+  height: 85px;
+  background-color: white;
+}
+
+.main .auth-form .form-item input.last {
+  display: block;
+  width: 214px;
+  height: 90px;
+  background-color: white;
+
+  margin: 0 auto;
+  margin-top: 38px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 39px;
+  color: #6d6b6b;
 }
 
 /* draw two pictures */
 .main .auth-paint-pic {
   position: absolute;
 
-  width: 270px;
-  height: 400px;
+  width: 320px;
 }
 .main .auth-paint-pic.boy-pic {
   left: 0;

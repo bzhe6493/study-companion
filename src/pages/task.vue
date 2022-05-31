@@ -104,6 +104,10 @@ export default defineComponent({
     },
     onChangeField(index, name, value) {
       console.log(index, name, value);
+      this.$set(this.tasks, index, {
+        ...this.tasks[index],
+        [name]: value,
+      });
     },
   },
   mounted() {},

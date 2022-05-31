@@ -10,14 +10,14 @@
         <div class="time-container">
           <div class="minutes-setter-wrapper">
             <div class="oper left-oper">
-              <div class="plus">
+              <div class="plus" @click="changeTime('minutes', '+', 'work')">
                 <img
                   class="icon plus-icon"
                   src="../assets/plus.png"
                   alt="plus"
                 />
               </div>
-              <div class="minus">
+              <div class="minus" @click="changeTime('minutes', '-', 'work')">
                 <img
                   class="icon minus-icon"
                   src="../assets/minus.png"
@@ -39,14 +39,14 @@
               {{ workSeconds }}
             </div>
             <div class="oper right-oper">
-              <div class="plus">
+              <div class="plus" @click="changeTime('seconds', '+', 'work')">
                 <img
                   class="icon plus-icon"
                   src="../assets/plus.png"
                   alt="plus"
                 />
               </div>
-              <div class="minus">
+              <div class="minus" @click="changeTime('seconds', '-', 'work')">
                 <img
                   class="icon minus-icon"
                   src="../assets/minus.png"
@@ -64,14 +64,14 @@
         <div class="time-container">
           <div class="minutes-setter-wrapper">
             <div class="oper left-oper">
-              <div class="plus">
+              <div class="plus" @click="changeTime('minutes', '+', 'break')">
                 <img
                   class="icon plus-icon"
                   src="../assets/plus.png"
                   alt="plus"
                 />
               </div>
-              <div class="minus">
+              <div class="minus" @click="changeTime('minutes', '-', 'break')">
                 <img
                   class="icon minus-icon"
                   src="../assets/minus.png"
@@ -93,14 +93,14 @@
               {{ breakSeconds }}
             </div>
             <div class="oper right-oper">
-              <div class="plus">
+              <div class="plus" @click="changeTime('seconds', '+', 'break')">
                 <img
                   class="icon plus-icon"
                   src="../assets/plus.png"
                   alt="plus"
                 />
               </div>
-              <div class="minus">
+              <div class="minus" @click="changeTime('seconds', '-', 'break')">
                 <img
                   class="icon minus-icon"
                   src="../assets/minus.png"
@@ -113,9 +113,8 @@
       </div>
 
       <footer>
-        <input type="button" value="start" />
-
-        <input type="button" value="stop" />
+        <input type="button" value="start" @click="start" />
+        <input type="button" value="stop" @click="stop" />
       </footer>
     </div>
   </div>
@@ -141,7 +140,77 @@ export default defineComponent({
     };
   },
   computed: {},
-  methods: {},
+  methods: {
+    changeTime(name, type, block) {
+      if (name === "minutes" && block === "work") {
+        type === "+" &&
+          parseInt(this.workMinutes, 10) < 60 &&
+          (this.workMinutes = (
+            parseInt(this.workMinutes, 10) +
+            1 +
+            ""
+          ).padStart(2, "0"));
+        type === "-" &&
+          parseInt(this.workMinutes, 10) > 0 &&
+          (this.workMinutes = (
+            parseInt(this.workMinutes, 10) -
+            1 +
+            ""
+          ).padStart(2, "0"));
+      } else if (name === "minutes" && block === "break") {
+        type === "+" &&
+          parseInt(this.breakMinutes, 10) < 60 &&
+          (this.breakMinutes = (
+            parseInt(this.breakMinutes, 10) +
+            1 +
+            ""
+          ).padStart(2, "0"));
+        type === "-" &&
+          parseInt(this.breakMinutes, 10) > 0 &&
+          (this.breakMinutes = (
+            parseInt(this.breakMinutes, 10) -
+            1 +
+            ""
+          ).padStart(2, "0"));
+      } else if (name === "seconds" && block === "work") {
+        type === "+" &&
+          parseInt(this.workSeconds, 10) < 60 &&
+          (this.workSeconds = (
+            parseInt(this.workSeconds, 10) +
+            1 +
+            ""
+          ).padStart(2, "0"));
+        type === "-" &&
+          parseInt(this.workSeconds, 10) > 0 &&
+          (this.workSeconds = (
+            parseInt(this.workSeconds, 10) -
+            1 +
+            ""
+          ).padStart(2, "0"));
+      } else if (name === "seconds" && block === "break") {
+        type === "+" &&
+          parseInt(this.breakSeconds, 10) < 60 &&
+          (this.breakSeconds = (
+            parseInt(this.breakSeconds, 10) +
+            1 +
+            ""
+          ).padStart(2, "0"));
+        type === "-" &&
+          parseInt(this.breakSeconds, 10) > 0 &&
+          (this.breakSeconds = (
+            parseInt(this.breakSeconds, 10) -
+            1 +
+            ""
+          ).padStart(2, "0"));
+      }
+    },
+    start() {
+      this.$emit("start", this.workMinutes, this.workSeconds);
+    },
+    stop() {
+      this.$emit("stop");
+    },
+  },
 });
 </script>
 <style lang="css" scoped>

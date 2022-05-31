@@ -12,28 +12,48 @@
         </div>
       </header>
 
-      <div class="body"></div>
+      <div class="body">
+        <div class="r-wrapper" v-for="para in paras" :key="para.title">
+          <div class="title">{{ para.title }}</div>
+          <div class="text">{{ para.text }}</div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 <script>
 import { defineComponent } from "vue";
-import getWordInfo from "../api/request";
 
 export default defineComponent({
   data() {
     return {
-      cards: [],
+      paras: [
+        {
+          title: "wire",
+          text: "Wire, wire; wire, wire; concealed electronic receiver.",
+        },
+        {
+          title: "line",
+          text: "line, line; (of a sports field) field boundary, field line; wrinkle...",
+        },
+        {
+          title: "string",
+          text: "thread, string;a series, a series of (events); a series of ...",
+        },
+        {
+          title: "thread",
+          text: "line; thin line, thread; thought, the main thread running through; (interconnection...",
+        },
+        {
+          title: "frame",
+          text: "Frame, frame; frame (of furniture, buildings, vehicles, etc.).",
+        },
+      ],
       word: "",
     };
   },
   computed: {},
-  methods: {
-    async getWord() {
-      const data = await getWordInfo(this.word);
-      console.log(data);
-    },
-  },
+  methods: {},
 });
 </script>
 <style lang="css" scoped>
@@ -93,7 +113,7 @@ export default defineComponent({
 .main-body {
   width: 100%;
   height: 660px;
-  padding: 25px 15px;
+  padding: 20px 15px;
   box-sizing: border-box;
 
   background-color: #eeebeb;
@@ -119,9 +139,34 @@ export default defineComponent({
 }
 
 .main-body .body {
-  min-height: 520px;
+  height: 520px;
   background-color: white;
   margin: 6px;
   margin-top: 20px;
+  padding: 10px 20px;
+}
+
+.main-body .body .r-wrapper {
+  margin-bottom: 20px;
+}
+
+.main-body .body .r-wrapper .title {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+
+  color: #000000;
+}
+
+.main-body .body .r-wrapper .text {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 29px;
+
+  color: #000000;
 }
 </style>

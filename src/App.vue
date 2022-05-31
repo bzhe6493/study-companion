@@ -1,24 +1,27 @@
 <template>
   <login-page
-    v-if="routeName === 'signin'"
+    v-show="routeName === 'signin'"
     :signUp="true"
     @changeRoute="changeRoute"
   ></login-page>
   <login-page
-    v-if="routeName === 'login'"
+    v-show="routeName === 'login'"
     :signUp="false"
     @changeRoute="changeRoute"
   ></login-page>
-  <task-page v-if="routeName === 'task'" @changeRoute="changeRoute"></task-page>
+  <task-page
+    v-show="routeName === 'task'"
+    @changeRoute="changeRoute"
+  ></task-page>
   <kanban-page
-    v-if="routeName === 'kanban'"
+    v-show="routeName === 'kanban'"
     @changeRoute="changeRoute"
   ></kanban-page>
   <pomodoro-page
-    v-if="routeName === 'pomodoro'"
+    v-show="routeName === 'pomodoro'"
     @changeRoute="changeRoute"
   ></pomodoro-page>
-  <aux-page v-if="routeName === 'aux'" @changeRoute="changeRoute"></aux-page>
+  <aux-page v-show="routeName === 'aux'" @changeRoute="changeRoute"></aux-page>
 </template>
 
 <script>
