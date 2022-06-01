@@ -1,5 +1,10 @@
 <template>
-  <div class="container-2">
+  <div
+    :class="{
+      'container-2': true,
+      ifMobile: ifMobile,
+    }"
+  >
     <div class="title-bar">
       <h2 class="title">Set time</h2>
     </div>
@@ -253,6 +258,9 @@ export default defineComponent({
 
   background-color: #eeebeb;
   border-radius: 0 0 26px 26px;
+}
+
+.container-2.isMobile .main-body {
 }
 
 .main-body .block {

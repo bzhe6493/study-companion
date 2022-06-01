@@ -1,5 +1,10 @@
 <template>
-  <div class="container-2">
+  <div
+    :class="{
+      'container-2': true,
+      ifMobile: ifMobile,
+    }"
+  >
     <div class="title-bar">
       <h2 class="title">
         {{ title }}
@@ -36,6 +41,7 @@ export default defineComponent({
       type: String,
       required: true,
     },
+    ifMobile: Boolean,
   },
   components: {
     kanbanCardItem,
@@ -126,6 +132,22 @@ export default defineComponent({
   min-height: 660px;
   max-height: 860px;
   padding: 25px 15px;
+  padding-bottom: 0;
+  box-sizing: border-box;
+
+  background-color: #eeebeb;
+  border-radius: 0 0 26px 26px;
+
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.container-2.ifMobile .main-body {
+  width: 100%;
+  min-height: 240px;
+  max-height: 660px;
+  padding: 25px 15px;
+  padding-bottom: 0;
   box-sizing: border-box;
 
   background-color: #eeebeb;

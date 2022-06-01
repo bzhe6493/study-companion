@@ -63,7 +63,7 @@
     </div>
 
     <div class="main">
-      <h2>Pomodoro</h2>
+      <h2 v-if="!ifMobile">Pomodoro</h2>
 
       <div class="container-wrapper">
         <div class="clock-container">
@@ -72,15 +72,13 @@
             <div class="time">
               {{ minutes }}
               <div
-                style="
-                   {
-                    font-size: 118px;
-                    position: absolute;
-                    left: 50%;
-                    top: 50%;
-                    transform: translateY(-56%) translateX(-50%);
-                  }
-                "
+                :style="{
+                  fontSize: !ifMobile ? '118px' : '42px',
+                  position: 'absolute',
+                  left: '50%',
+                  top: '50%',
+                  transform: 'translateY(-56%) translateX(-50%)',
+                }"
               >
                 :
               </div>
@@ -252,6 +250,13 @@ export default defineComponent({
   padding: 0 38px;
   position: relative;
 }
+.container.ifMobile .main {
+  width: 100%;
+  padding: 0;
+  padding-top: 30px;
+  position: relative;
+}
+
 .main h2 {
   font-family: "Inter";
   font-style: normal;
@@ -277,9 +282,19 @@ export default defineComponent({
   padding: 30px 50px;
 }
 
+.container.ifMobile .main .container-wrapper .clock-container {
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
 .main .container-wrapper .clock-container .countdown-container {
   text-align: center;
 }
+.container.ifMobile .main .container-wrapper .countdown-container {
+  width: 200px;
+  float: right;
+}
+
 .main .container-wrapper .clock-container .countdown-container .text {
   font-family: "Inter";
   font-style: normal;
@@ -289,6 +304,18 @@ export default defineComponent({
 
   color: #6d6b6b;
 }
+.container.ifMobile
+  .main
+  .container-wrapper
+  .clock-container
+  .countdown-container
+  .text {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  color: #6d6b6b;
+}
+
 .main .container-wrapper .clock-container .countdown-container .time {
   width: 390px;
   height: 172px;
@@ -304,18 +331,63 @@ export default defineComponent({
 
   color: #3c3a3a;
 }
+.container.ifMobile
+  .container-wrapper
+  .clock-container
+  .countdown-container
+  .time {
+  width: 200px;
+  height: 100px;
+  font-size: 52px;
+  font-weight: 900;
+  line-height: 100px;
+}
 
+.container.ifMobile .main .container-wrapper {
+  flex-direction: column;
+}
+
+.container.ifMobile .main .container-wrapper .pic-container {
+  float: left;
+}
+
+.container.ifMobile
+  .main
+  .container-wrapper
+  .clock-container
+  .countdown-container
+  .time {
+  width: 100%;
+}
 .main .container-wrapper .clock-container .pic-container {
   width: 468px;
   height: 336px;
   margin-top: 50px;
   text-align: center;
 }
+.container.ifMobile .main .container-wrapper .clock-container {
+  padding: 0;
+}
 
-.main .container-wrapper .clock-container .pic-container .big-clock {
+.container.ifMobile .main .container-wrapper .clock-container .pic-container {
+  width: 148px;
+  height: 106px;
+  margin-top: 20px;
+}
+.container.ifMobile
+  .main
+  .container-wrapper
+  .clock-container
+  .pic-container
+  img {
+  width: 148px;
+  height: 106px;
 }
 
 .main .container-wrapper .setter-container {
   flex: 1;
+}
+.container.ifMobile .main .container-wrapper .setter-container {
+  padding: 25px;
 }
 </style>

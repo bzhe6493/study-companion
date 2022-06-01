@@ -63,7 +63,7 @@
     </div>
 
     <div class="main">
-      <h2>Kanban Board</h2>
+      <h2 v-if="!ifMobile">Kanban Board</h2>
 
       <!-- <div class="add-area flex" @click="addTask">
         <img class="plus" src="../assets/plus-mini.png" alt="plus" />
@@ -73,6 +73,7 @@
 
       <div class="card-container">
         <kanban-card
+          :ifMobile="ifMobile"
           v-for="(name, index) in ['Not started', 'In progress', 'Completed']"
           :key="index"
           :index="index"
@@ -204,6 +205,11 @@ export default defineComponent({
   padding: 0 38px;
   position: relative;
 }
+.container.ifMobile .main {
+  padding: 0 20px;
+  margin-top: 20px;
+}
+
 .main h2 {
   font-family: "Inter";
   font-style: normal;
@@ -245,7 +251,16 @@ export default defineComponent({
   display: flex;
   justify-content: space-between;
 }
+
+.container.ifMobile .main .card-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .main .card-container div.container-2 {
   width: 31%;
+}
+.container.ifMobile .main .card-container div.container-2 {
+  width: 100%;
 }
 </style>
