@@ -3,6 +3,7 @@
     <div
       :class="{
         item: true,
+        ifMobile: ifMobile,
         'active-item': activeKey === name,
       }"
       @click="changeKey"
@@ -11,17 +12,17 @@
         <img :src="imgUrl" :alt="name" />
       </div>
 
-      <div class="play-right">
+      <div class="play-right" v-if="activeKey !== name || !ifMobile || true">
         <div class="header">
           <div class="pri-header">
             {{ primaryTitle }}
           </div>
-          <div class="sec-header" v-if="activeKey === name">
+          <div class="sec-header" v-if="activeKey === name && !ifMobile">
             &nbsp;-&nbsp;{{ secondaryTitle }}
           </div>
           <div class="sec-header" v-else>{{ secondaryTitle }}</div>
         </div>
-        <div class="body" v-if="activeKey === name">
+        <div class="body" v-if="activeKey === name && !ifMobile">
           <img
             src="../assets/play-left.png"
             alt="play-left"
@@ -46,7 +47,7 @@
   </div>
 </template>
 <script>
-import { defineComponent, ref, watch, onMounted } from "vue";
+import { defineComponent, ref, watch } from "vue";
 
 const m1 = require("../assets/music/As It Was - Harry Styles.mp3");
 const m2 = require("../assets/music/ENEMY - Imagine Dragons、J.I.D.mp3");
@@ -59,6 +60,7 @@ const p2 = require("../assets/play-one.png");
 
 export default defineComponent({
   props: {
+    ifMobile: Boolean,
     name: String,
     imgUrl: String,
     mp3Url: String,
@@ -127,14 +129,6 @@ export default defineComponent({
         }
       }
     );
-
-    onMounted(() => {
-      console.log(musicRef.value);
-      // musicRef.value?.play();
-      // playing.value = true;
-      // musicRef.value && musicRef.value.play();
-    });
-
     return {
       musicRef,
       started,
@@ -152,6 +146,7 @@ export default defineComponent({
 }
 
 .active-item.item .pic {
+  flex: 0 0 126px;
   width: 126px;
   height: 126px;
   border-radius: 20px;
@@ -164,6 +159,7 @@ export default defineComponent({
 }
 
 .item .pic {
+  flex: 0 0 100px;
   width: 98px;
   height: 98px;
   border-radius: 20px;
@@ -193,8 +189,14 @@ export default defineComponent({
   font-size: 24px;
 }
 
-.active-item .pri-header {
+.active-item.item .pri-header {
   float: left;
+}
+.ifMobile.active-item.item .pri-header {
+  font-size: 14px;
+}
+.ifMobile.item .pri-header {
+  font-size: 14px;
 }
 
 .active-item.item .sec-header {
@@ -202,10 +204,16 @@ export default defineComponent({
   color: #706a6a;
   font-size: 20px;
 }
+.ifMobile.active-item.item .sec-header {
+  font-size: 14px;
+}
 
 .item .sec-header {
   color: #706a6a;
   font-size: 18px;
+}
+.ifMobile.item .sec-header {
+  font-size: 14px;
 }
 
 .body {

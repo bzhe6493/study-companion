@@ -1,5 +1,10 @@
 <template>
-  <div class="container-2">
+  <div
+    :class="{
+      'container-2': true,
+      ifMobile: ifMobile,
+    }"
+  >
     <div class="title-bar">
       <h2 class="title">Dictionary</h2>
     </div>
@@ -15,7 +20,7 @@
       <div class="body">
         <div class="body-inner">
           <div v-if="!definitions.length" class="title">
-            No Definitions Found
+            {{ helptip }}
           </div>
 
           <div
@@ -36,15 +41,20 @@ import { defineComponent } from "vue";
 import getWordInfo from "../api/request";
 
 export default defineComponent({
+  props: {
+    ifMobile: Boolean,
+  },
   data() {
     return {
       word: "",
       definitions: [],
+      helptip: "No Definitions Found",
     };
   },
   computed: {},
   methods: {
     async search() {
+      this.helptip = "Loading...";
       const res = await getWordInfo(this.word);
 
       if (Array.isArray(res) && res[0] && res[0].meanings) {
@@ -55,8 +65,10 @@ export default defineComponent({
         });
 
         this.definitions = defs;
+        this.helptip = "";
       } else {
         this.definitions = [];
+        this.helptip = "No Definitions Found";
       }
     },
   },
@@ -115,6 +127,24 @@ export default defineComponent({
   font-size: 30px;
   margin-top: 14px;
 }
+.container-2.ifMobile .title-bar {
+  height: 40px;
+  font-size: 22px;
+  line-height: 40px;
+  text-align: left;
+  padding: 0 12px;
+
+  color: white;
+  background-color: #2091e3;
+  border-radius: 26px 26px 0 0;
+
+  display: flex;
+}
+.container-2.ifMobile .title-bar h2.title {
+  height: 40px;
+  font-size: 22px;
+  line-height: 40px;
+}
 
 .main-body {
   width: 100%;
@@ -127,6 +157,9 @@ export default defineComponent({
 
   overflow-y: scroll;
   overflow-x: hidden;
+}
+.container-2.ifMobile .main-body {
+  height: 550px;
 }
 
 .main-body header {
@@ -142,6 +175,16 @@ export default defineComponent({
   display: flex;
   padding: 10px;
   cursor: pointer;
+}
+
+.container-2.ifMobile .main-body header input {
+  height: 50px;
+  font-size: 24px;
+}
+
+.container-2.ifMobile .main-body header .search-wrapper {
+  width: 50px;
+  height: 50px;
 }
 
 .main-body .body {

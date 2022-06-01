@@ -7,7 +7,7 @@
       <div class="clock-wrapper">
         <img class="clock" src="../assets/clock.png" alt="clock" />
       </div>
-      <div class="text">task deadline</div>
+      <div class="text">{{ deadline || "task deadline" }}</div>
     </footer>
   </div>
 </template>
@@ -18,6 +18,7 @@ export default defineComponent({
   props: {
     title: String,
     subject: String,
+    deadline: String,
   },
 });
 </script>

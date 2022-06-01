@@ -134,6 +134,7 @@ export default defineComponent({
       type: String,
       required: true,
     },
+    ifMobile: Boolean,
   },
   components: {},
   data() {
@@ -235,6 +236,21 @@ export default defineComponent({
 
   display: flex;
 }
+
+.container-2.ifMobile .title-bar {
+  height: 40px;
+  font-size: 22px;
+  line-height: 40px;
+  text-align: left;
+  padding: 0 12px;
+
+  color: white;
+  background-color: #2091e3;
+  border-radius: 26px 26px 0 0;
+
+  display: flex;
+}
+
 .title-bar h2.title {
   margin: 0;
   padding: 0;
@@ -249,6 +265,11 @@ export default defineComponent({
 
   color: #ffffff;
 }
+.container-2.ifMobile .title-bar h2.title {
+  height: 40px;
+  font-size: 22px;
+  line-height: 40px;
+}
 
 .main-body {
   width: 100%;
@@ -259,8 +280,12 @@ export default defineComponent({
   background-color: #eeebeb;
   border-radius: 0 0 26px 26px;
 }
+.container-2.ifMobile .main-body {
+  height: 330px;
+}
 
-.container-2.isMobile .main-body {
+.container-2.ifMobile .main-body {
+  padding: 10px 14px 22px;
 }
 
 .main-body .block {
@@ -269,6 +294,9 @@ export default defineComponent({
   flex-direction: column;
   justify-content: center;
   margin-bottom: 60px;
+}
+.container-2.ifMobile .main-body .block {
+  margin-bottom: 30px;
 }
 
 .main-body .block .time-container {
@@ -286,12 +314,24 @@ export default defineComponent({
 
   color: #6d6b6b;
 }
+.container-2.ifMobile .main-body .block .text {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 30px;
+  text-align: center;
+
+  color: #6d6b6b;
+}
 
 .main-body .block .time-container .middle {
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translateY(-50%) translateX(-50%);
+}
+.container-2.ifMobile .main-body .block .time-container .middle img {
+  width: 20px;
 }
 
 .minutes-setter-wrapper {
@@ -311,6 +351,15 @@ export default defineComponent({
   justify-content: space-around;
 }
 
+.container-2.ifMobile .minutes-setter-wrapper .oper,
+.container-2.ifMobile .seconds-setter-wrapper .oper {
+  height: 60px;
+}
+.container-2.ifMobile .minutes-setter-wrapper .oper > div,
+.container-2.ifMobile .seconds-setter-wrapper .oper > div {
+  display: flex;
+}
+
 .left-oper {
   margin-right: 12px;
 }
@@ -322,6 +371,13 @@ export default defineComponent({
 .seconds-setter-wrapper .oper .icon {
   width: 42px;
   height: 42px;
+  cursor: pointer;
+}
+
+.container-2.ifMobile .minutes-setter-wrapper .oper .icon,
+.container-2.ifMobile .seconds-setter-wrapper .oper .icon {
+  width: 24px;
+  height: 24px;
   cursor: pointer;
 }
 
@@ -337,6 +393,12 @@ export default defineComponent({
   font-size: 96px;
   line-height: 116px;
   text-align: center;
+}
+.container-2.ifMobile .main-body .block .time-container .number {
+  width: 76px;
+  height: 54px;
+  font-size: 42px;
+  line-height: 54px;
 }
 
 .main-body footer {
@@ -360,6 +422,19 @@ export default defineComponent({
   font-weight: 700;
   font-size: 42px;
   line-height: 82px;
+
+  color: #ffffff;
+}
+
+.container-2.ifMobile .main-body footer input[type="button"] {
+  width: 88px;
+  height: 48px;
+  border-radius: 30px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
 
   color: #ffffff;
 }

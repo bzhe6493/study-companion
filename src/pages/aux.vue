@@ -63,7 +63,7 @@
     </div>
 
     <div class="main">
-      <h2>Kanban Board</h2>
+      <h2 v-if="!ifMobile">Kanban Board</h2>
 
       <!-- <div class="add-area flex" @click="addTask">
         <img class="plus" src="../assets/plus-mini.png" alt="plus" />
@@ -72,8 +72,8 @@
       <!-- @addCard="addCard.bind(null, name)" -->
 
       <div class="card-container">
-        <music-card></music-card>
-        <dic-card></dic-card>
+        <music-card :ifMobile="ifMobile"></music-card>
+        <dic-card :ifMobile="ifMobile"></dic-card>
       </div>
     </div>
   </div>
@@ -195,6 +195,10 @@ export default defineComponent({
   padding: 0 38px;
   position: relative;
 }
+
+.container.ifMobile .main {
+  padding: 0 18px;
+}
 .main h2 {
   font-family: "Inter";
   font-style: normal;
@@ -211,7 +215,17 @@ export default defineComponent({
   display: flex;
   justify-content: space-between;
 }
+
+.container.ifMobile .main .card-container {
+  flex-direction: column;
+  margin-top: 30px;
+}
+
 .main .card-container div.container-2 {
   width: 45%;
+}
+
+.container.ifMobile .main div.container-2 {
+  width: 100%;
 }
 </style>

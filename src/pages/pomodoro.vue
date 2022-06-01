@@ -95,7 +95,15 @@
         </div>
 
         <div class="setter-container">
-          <pomodoro-card @start="start" @stop="stop"> </pomodoro-card>
+          <pomodoro-card :ifMobile="ifMobile" @start="start" @stop="stop">
+          </pomodoro-card>
+        </div>
+      </div>
+      <div class="introduce-container">
+        <div>
+          Pomodoro timing mode, each Pomodoro defaults to 25 minutes, each
+          Pomodoro defaults to a 5-minute rest, 4 Pomodoros form a group, and
+          each group rests for 20 minutes (the duration can be customized)
         </div>
       </div>
     </div>
@@ -389,5 +397,27 @@ export default defineComponent({
 }
 .container.ifMobile .main .container-wrapper .setter-container {
   padding: 25px;
+}
+
+.main .introduce-container {
+  padding: 0px 25px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+}
+
+.container.ifMobile .main .introduce-container {
+  margin-top: -20px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 13px;
+  text-align: center;
+
+  color: #939191;
 }
 </style>

@@ -73,13 +73,15 @@
           @click="refresh"
         />
 
-        <img
-          class="plus"
-          src="../assets/plus-mini.png"
-          alt="plus"
+        <div
+          :style="{
+            flex: '0 0 100px',
+          }"
           @click="addTask"
-        />
-        <span class="new" @click="addTask">NEW</span>
+        >
+          <img class="plus" src="../assets/plus-mini.png" alt="plus" />
+          <span class="new">NEW</span>
+        </div>
       </div>
 
       <task-card
@@ -289,6 +291,7 @@ export default defineComponent({
   margin-right: 12px;
 }
 .main .add-area .new {
+  vertical-align: top;
   font-family: "Inter";
   font-style: normal;
   font-weight: 600;

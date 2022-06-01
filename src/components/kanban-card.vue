@@ -25,6 +25,7 @@
         :key="index"
         :title="item.title"
         :subject="item.subject"
+        :deadline="item.deadline"
       >
       </kanban-card-item>
     </div>

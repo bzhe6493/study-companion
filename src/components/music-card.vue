@@ -1,10 +1,16 @@
 <template>
-  <div class="container-2">
+  <div
+    :class="{
+      'container-2': true,
+      ifMobile: ifMobile,
+    }"
+  >
     <div class="title-bar">
       <h2 class="title">Music</h2>
     </div>
     <div class="main-body">
       <play-item
+        :ifMobile="ifMobile"
         v-for="item in playList"
         :key="item.key"
         :name="item.key"
@@ -35,6 +41,9 @@ import waitForU from "../assets/music/waitForU.png";
 export default defineComponent({
   components: {
     playItem,
+  },
+  props: {
+    ifMobile: Boolean,
   },
   data() {
     return {
@@ -178,6 +187,24 @@ export default defineComponent({
   font-size: 30px;
   margin-top: 14px;
 }
+.container-2.ifMobile .title-bar {
+  height: 40px;
+  font-size: 22px;
+  line-height: 40px;
+  text-align: left;
+  padding: 0 12px;
+
+  color: white;
+  background-color: #2091e3;
+  border-radius: 26px 26px 0 0;
+
+  display: flex;
+}
+.container-2.ifMobile .title-bar h2.title {
+  height: 40px;
+  font-size: 22px;
+  line-height: 40px;
+}
 
 .main-body {
   width: 100%;
@@ -191,5 +218,10 @@ export default defineComponent({
 
   overflow-y: scroll;
   overflow-x: hidden;
+}
+
+.container-2.ifMobile .main-body {
+  padding-left: 10px;
+  padding-right: 10px;
 }
 </style>
