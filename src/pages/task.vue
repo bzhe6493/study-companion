@@ -63,7 +63,7 @@
     </div>
 
     <div class="main">
-      <h2>Task List</h2>
+      <h2 v-if="!ifMobile">Task List</h2>
 
       <div class="add-area flex">
         <img
@@ -83,6 +83,7 @@
       </div>
 
       <task-card
+        :ifMobile="ifMobile"
         v-for="(task, index) in tasks"
         :key="index"
         :index="index"
@@ -243,6 +244,10 @@ export default defineComponent({
   padding: 0 38px;
   position: relative;
 }
+.container.ifMobile .main {
+  padding: 0 8px;
+}
+
 .main h2 {
   font-family: "Inter";
   font-style: normal;
@@ -262,6 +267,10 @@ export default defineComponent({
 
   margin-bottom: 18px;
 }
+.container.ifMobile .main .add-area {
+  margin-top: 18px;
+}
+
 .main .add-area.flex {
   display: flex;
   justify-content: flex-start;

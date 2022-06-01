@@ -1,5 +1,10 @@
 <template>
-  <div class="container-2">
+  <div
+    :class="{
+      'container-2': true,
+      ifMobile: ifMobile,
+    }"
+  >
     <div class="title-bar">
       <h2 class="title">
         {{ title || "Create a task" }}
@@ -32,7 +37,12 @@
         />
       </div>
 
-      <div class="form-item time-form-item float-left">
+      <div
+        :class="{
+          'form-item time-form-item': true,
+          'float-left': !ifMobile,
+        }"
+      >
         <label for="time"> Time (How long the task is expected to take) </label>
         <div class="time-wrapper">
           <input
@@ -55,7 +65,12 @@
         </div>
       </div>
 
-      <div class="form-item priority-form-item float-left">
+      <div
+        :class="{
+          'form-item priority-form-item': true,
+          'float-left': !ifMobile,
+        }"
+      >
         <label for="priority"> Priority rating </label>
         <div class="priority-wrapper">
           <div
@@ -88,7 +103,12 @@
         </div>
       </div>
 
-      <div class="form-item deadline-form-item float-left">
+      <div
+        :class="{
+          'form-item deadline-form-item': true,
+          'float-left': !ifMobile,
+        }"
+      >
         <label for="deadline"> Task deadline </label>
         <input
           type="text"
@@ -99,7 +119,12 @@
         />
       </div>
 
-      <div class="form-item status-form-item float-left">
+      <div
+        :class="{
+          'form-item status-form-item': true,
+          'float-left': !ifMobile,
+        }"
+      >
         <label for="status"> Status (Done/Not Done) </label>
 
         <select name="status" id="status" ref="statusRef">
@@ -117,7 +142,12 @@
         /> -->
       </div>
 
-      <div class="form-item submit-form-item flex-column">
+      <div
+        :class="{
+          'form-item submit-form-item': true,
+          'flex-column': !ifMobile,
+        }"
+      >
         <input type="button" value="Cancel" @click="cancel" />
         <input type="button" value="Save" @click="save" />
       </div>
@@ -137,6 +167,7 @@ export default defineComponent({
     deadline: String,
     status: String,
     onChangeField: Function,
+    ifMobile: Boolean,
   },
   data() {
     return {
@@ -221,6 +252,11 @@ export default defineComponent({
 .container-2 {
   margin-bottom: 20px;
 }
+.container-2.ifMobile {
+  margin: 0px 20px;
+  margin-bottom: 20px;
+}
+
 .title-bar {
   height: 60px;
   font-size: 28px;
@@ -290,13 +326,27 @@ export default defineComponent({
 .main-body .form-item input {
   display: block;
 }
+.container-2.ifMobile .main-body .form-item label {
+  height: 32px;
+  font-size: 20px;
+  line-height: 32px;
 
-.main-body .form-item.subject-form-item {
-  /* margin-bottom: 80px; */
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.container-2.ifMobile .main-body .form-item input {
+  height: 42px;
+  border-radius: 10px;
+  font-size: 18px;
+  line-height: 42px;
 }
 
 .main-body .form-item.time-form-item {
   width: 600px;
+}
+.container-2.ifMobile .main-body .form-item.time-form-item {
+  width: 100%;
 }
 .main-body .form-item.time-form-item .time-wrapper {
   display: flex;
@@ -310,9 +360,16 @@ export default defineComponent({
 .main-body .form-item.time-form-item .dot2 {
   margin: 0 12px;
 }
+.container-2.ifMobile .main-body .form-item.time-form-item .dot2 {
+  height: 32px;
+  margin: 0 12px;
+}
 
 .main-body .form-item.priority-form-item {
   width: 400px;
+}
+.container-2.ifMobile .main-body .form-item.priority-form-item {
+  width: 100%;
 }
 .main-body .form-item.priority-form-item .priority-wrapper {
   display: flex;
@@ -329,6 +386,17 @@ export default defineComponent({
   text-align: center;
   cursor: pointer;
 }
+.container-2.ifMobile
+  .main-body
+  .form-item.priority-form-item
+  .priority-wrapper
+  div {
+  width: 100px;
+  background-color: white;
+  height: 50px;
+  line-height: 50px;
+  margin-right: 20px;
+}
 .main-body .form-item.priority-form-item .priority-wrapper div.active {
   width: 100px;
   background-color: rgb(120, 186, 244);
@@ -338,6 +406,10 @@ export default defineComponent({
 .main-body .form-item.deadline-form-item {
   width: 600px;
 }
+.container-2.ifMobile .main-body .form-item.deadline-form-item {
+  width: 600px;
+}
+
 .main-body .form-item.deadline-form-item input {
   width: 252px;
 }
@@ -355,6 +427,14 @@ export default defineComponent({
   position: absolute;
   right: 150px;
   bottom: 30px;
+}
+.container-2.ifMobile .main-body .form-item.submit-form-item {
+  position: inherit;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 24px;
+  right: auto;
+  bottom: auto;
 }
 
 .main-body .form-item.submit-form-item input:nth-child(1) {
@@ -375,6 +455,19 @@ export default defineComponent({
   border: none;
   font-size: 28px;
   line-height: 34px;
+
+  color: #6d6b6b;
+  text-align: left;
+  text-indent: 12px;
+}
+
+.container-2.ifMobile .main-body #status {
+  width: 252px;
+  height: 42px;
+  border-radius: 10px;
+  border: none;
+  font-size: 20px;
+  line-height: 42px;
 
   color: #6d6b6b;
   text-align: left;
