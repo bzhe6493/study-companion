@@ -93,8 +93,8 @@ body {
 }
 
 .w-container {
-  width: 100px;
-  /* width: v-bind(containerWidth); */
+  /* width: 100px; */
+  width: v-bind(containerWidth);
   margin: 0 auto;
   background-color: white;
 }

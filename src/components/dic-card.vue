@@ -7,15 +7,25 @@
       <header>
         <input type="text" placeholder="Search for words" v-model="word" />
 
-        <div class="search-wrapper" v-on:click="getWord">
+        <div class="search-wrapper" v-on:click="search">
           <img src="../assets/search.png" alt="search" />
         </div>
       </header>
 
       <div class="body">
-        <div class="r-wrapper" v-for="para in paras" :key="para.title">
-          <div class="title">{{ para.title }}</div>
-          <div class="text">{{ para.text }}</div>
+        <div class="body-inner">
+          <div v-if="!definitions.length" class="title">
+            No Definitions Found
+          </div>
+
+          <div
+            class="r-wrapper"
+            v-for="(para, idx) in definitions"
+            :key="para.title"
+          >
+            <div class="title">{{ idx + 1 }}. {{ para.definition }}</div>
+            <div class="text">example: {{ para.example }}</div>
+          </div>
         </div>
       </div>
     </div>
@@ -23,37 +33,33 @@
 </template>
 <script>
 import { defineComponent } from "vue";
+import getWordInfo from "../api/request";
 
 export default defineComponent({
   data() {
     return {
-      paras: [
-        {
-          title: "wire",
-          text: "Wire, wire; wire, wire; concealed electronic receiver.",
-        },
-        {
-          title: "line",
-          text: "line, line; (of a sports field) field boundary, field line; wrinkle...",
-        },
-        {
-          title: "string",
-          text: "thread, string;a series, a series of (events); a series of ...",
-        },
-        {
-          title: "thread",
-          text: "line; thin line, thread; thought, the main thread running through; (interconnection...",
-        },
-        {
-          title: "frame",
-          text: "Frame, frame; frame (of furniture, buildings, vehicles, etc.).",
-        },
-      ],
       word: "",
+      definitions: [],
     };
   },
   computed: {},
-  methods: {},
+  methods: {
+    async search() {
+      const res = await getWordInfo(this.word);
+
+      if (Array.isArray(res) && res[0] && res[0].meanings) {
+        let defs = [];
+
+        res[0].meanings.forEach((meaning) => {
+          defs = [...defs, ...meaning.definitions];
+        });
+
+        this.definitions = defs;
+      } else {
+        this.definitions = [];
+      }
+    },
+  },
 });
 </script>
 <style lang="css" scoped>
@@ -140,27 +146,22 @@ export default defineComponent({
 
 .main-body .body {
   height: 520px;
+  overflow-y: auto;
   background-color: white;
   margin: 6px;
   margin-top: 20px;
   padding: 10px 20px;
 }
 
+.main-body .body .body-inner {
+  height: auto;
+}
+
 .main-body .body .r-wrapper {
   margin-bottom: 20px;
 }
 
-.main-body .body .r-wrapper .title {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 24px;
-  line-height: 29px;
-
-  color: #000000;
-}
-
-.main-body .body .r-wrapper .text {
+.main-body .body .title {
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
@@ -169,4 +170,15 @@ export default defineComponent({
 
   color: #000000;
 }
+
+.main-body .body .r-wrapper .text {
+  font-family: "Inter";
+  font-style: italic;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 29px;
+
+  color: #000000;
+}
 </style>
+const

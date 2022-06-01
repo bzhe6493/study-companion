@@ -1,6 +1,7 @@
 <template>
   <div class="container-3">
     <h2>{{ title }}</h2>
+    <div class="text2">{{ subject }}</div>
 
     <footer>
       <div class="clock-wrapper">
@@ -16,6 +17,7 @@ import { defineComponent } from "vue";
 export default defineComponent({
   props: {
     title: String,
+    subject: String,
   },
 });
 </script>
@@ -60,6 +62,17 @@ export default defineComponent({
   height: 30px;
   font-size: 30px;
   margin-top: 7px;
+}
+
+.container-3 .text2 {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 29px;
+  margin-left: 8px;
+
+  color: #6d6b6b;
 }
 
 .container-3 footer .text {

@@ -4,10 +4,13 @@
       <h2 class="title">
         {{ title }}
       </h2>
-      <div class="pencil-wrapper">
-        <img class="pencil" src="../assets/pencil.png" alt="pencil" />
+      <div class="pencil-wrapper" @click="refresh">
+        <img class="pencil" src="../assets/refresh.png" alt="refresh" />
       </div>
-      <div class="add-wrapper" @click="addCard">
+      <div
+        class="add-wrapper"
+        @click="addCard.call(null, this.cards.length + 1)"
+      >
         <img class="plus" src="../assets/plus-mini.png" alt="plus" />
       </div>
     </div>
@@ -15,7 +18,8 @@
       <kanban-card-item
         v-for="(item, index) in cards"
         :key="index"
-        :title="`Card ` + (index + 1)"
+        :title="item.title"
+        :subject="item.subject"
       >
       </kanban-card-item>
     </div>
@@ -43,8 +47,22 @@ export default defineComponent({
   },
   computed: {},
   methods: {
-    addCard() {
-      this.cards.push({});
+    addCard(n) {
+      this.cards.push({
+        title: "Card " + n,
+      });
+    },
+    refresh() {
+      const tasks = localStorage.getItem("tasks")
+        ? JSON.parse(localStorage.getItem("tasks"))
+        : [];
+
+      const fts = tasks.filter(
+        (t) =>
+          t.status === this.title || (this.title === "In progress" && !t.status)
+      );
+
+      this.cards = fts;
     },
   },
 });
@@ -86,7 +104,7 @@ export default defineComponent({
   cursor: pointer;
 }
 .title-bar .pencil {
-  width: 30px;
+  width: 40px;
   height: 40px;
   font-size: 40px;
   margin-top: 10px;

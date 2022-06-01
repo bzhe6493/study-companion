@@ -104,8 +104,9 @@
 
         <select name="status" id="status" ref="statusRef">
           <option disabled selected value>-- select an option --</option>
-          <option value="done">Done</option>
-          <option value="notdone">Not Done</option>
+          <option value="Completed">Done</option>
+          <!-- <option value="done">In Progress</option> -->
+          <option value="Not started">Not Done</option>
         </select>
         <!-- <input
           type="select"
@@ -184,6 +185,16 @@ export default defineComponent({
     },
     save() {
       console.log("click save");
+      const obj = {
+        title: this.titleRef.value,
+        subject: this.subjectRef.value,
+        time1: this.time1Ref.value,
+        time2: this.time2Ref.value,
+        deadline: this.deadlineRef.value,
+        status: this.statusRef.value,
+      };
+
+      this.$emit("onChangeField", this.index, obj);
     },
   },
 
@@ -215,18 +226,18 @@ export default defineComponent({
   font-size: 28px;
   line-height: 60px;
   text-align: left;
-  padding: 0 12px;
+  padding: 0 22px;
 
   color: white;
   background-color: #2091e3;
   border-radius: 26px 26px 0 0;
 
   display: flex;
+  justify-content: space-between;
 }
 .title-bar h2.title {
   margin: 0;
   padding: 0;
-  display: inline-block;
 
   font-family: "Inter";
   font-style: normal;
@@ -237,7 +248,6 @@ export default defineComponent({
   color: #ffffff;
 }
 .title-bar .pencil-wrapper {
-  margin-left: calc(100% - 220px);
   overflow: hidden;
   cursor: pointer;
 }
@@ -249,6 +259,7 @@ export default defineComponent({
 }
 
 .main-body {
+  position: relative;
   width: 100%;
   min-height: 500px;
   padding: 6px 20px;

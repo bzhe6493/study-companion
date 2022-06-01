@@ -65,9 +65,21 @@
     <div class="main">
       <h2>Task List</h2>
 
-      <div class="add-area flex" @click="addTask">
-        <img class="plus" src="../assets/plus-mini.png" alt="plus" />
-        <span class="new">NEW</span>
+      <div class="add-area flex">
+        <img
+          class="refresh"
+          src="../assets/refresh.png"
+          alt="refresh"
+          @click="refresh"
+        />
+
+        <img
+          class="plus"
+          src="../assets/plus-mini.png"
+          alt="plus"
+          @click="addTask"
+        />
+        <span class="new" @click="addTask">NEW</span>
       </div>
 
       <task-card
@@ -124,12 +136,22 @@ export default defineComponent({
     deleteTask(index) {
       this.tasks.splice(index, 1);
     },
-    onChangeField(index, name, value) {
-      console.log(index, name, value);
-      this.$set(this.tasks, index, {
+    onChangeField(index, obj) {
+      console.log(index, obj);
+      this.tasks[index] = {
         ...this.tasks[index],
-        [name]: value,
+        ...obj,
+      };
+
+      this.$nextTick(() => {
+        localStorage.setItem("tasks", JSON.stringify(this.tasks));
       });
+    },
+    refresh() {
+      const tasks = localStorage.getItem("tasks")
+        ? JSON.parse(localStorage.getItem("tasks"))
+        : [];
+      this.tasks = tasks;
     },
   },
   mounted() {},
@@ -244,13 +266,19 @@ export default defineComponent({
   display: flex;
   justify-content: flex-start;
 }
+.main .add-area .refresh {
+  width: 36px;
+  height: 36px;
+  font-size: 40px;
+  margin-right: 12px;
+  margin-top: -2px;
+}
 .main .add-area .plus {
   width: 30px;
   height: 30px;
   font-size: 30px;
   margin-right: 12px;
 }
-
 .main .add-area .new {
   font-family: "Inter";
   font-style: normal;
