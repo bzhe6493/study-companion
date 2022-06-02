@@ -18,6 +18,9 @@
       >
         <img class="plus" src="../assets/plus-mini.png" alt="plus" />
       </div>
+      <div class="num">
+        {{ cards.length }}
+      </div>
     </div>
     <div class="main-body">
       <kanban-card-item
@@ -90,6 +93,7 @@ export default defineComponent({
   border-radius: 26px 26px 0 0;
 
   display: flex;
+  position: relative;
 }
 .title-bar h2.title {
   margin: 0;
@@ -126,6 +130,13 @@ export default defineComponent({
   height: 30px;
   font-size: 30px;
   margin-top: 14px;
+}
+.title-bar .num {
+  position: absolute;
+  right: 20px;
+  top: 2px;
+  font-weight: bold;
+  font-size: 30px;
 }
 
 .main-body {
