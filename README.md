@@ -58,3 +58,12 @@ By running "npm run build", this is also a script provided by Vue, after script 
 3. vue3 (data, props, emit, methods)
 4. axios (to request data)
  
+
+# Reference
+手绘黑色卡通小女孩简笔画免抠素材免费下载*觅元素 51yuansu.com. (2022). Retrieved 17 April 2022, from https://www.51yuansu.com/sc/jvchkdmxuu.html
+
+微笑的简笔小人图免抠素材免费下载*觅元素 51yuansu.com. (2022). Retrieved 17 April 2022, from https://www.51yuansu.com/sc/crsxhipxwq.html
+
+白色 IOS 时钟图标免抠素材免费下载*觅元素 51yuansu.com. (2022). Retrieved 17 April 2022, from https://www.51yuansu.com/sc/lrqxxzutpm.html
+
+蓝色闹钟简约图标元素免抠素材免费下载*觅元素 51yuansu.com. (2022).
