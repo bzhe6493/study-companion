@@ -54,6 +54,7 @@
         <img src="../assets/dot4.png" alt="dot" />
       </div>
 
+      <!-- a tabs list container, with it, we can easily travel from one page to another -->
       <div class="mobile-tabs-container" v-if="ifMobile" v-show="showTabs">
         <div class="tab-button" @click="to('task')">Task List</div>
         <div class="tab-button" @click="to('kanban')">Kanban Board</div>
@@ -113,6 +114,7 @@
 import { defineComponent } from "vue";
 import PomodoroCard from "../components/pomodoro-card.vue";
 
+// Pomotroid is a simple and configurable Pomodoro timer. It aims to provide a visually-pleasing and reliable way to track productivity using the Pomodoro Technique.
 export default defineComponent({
   name: "pomorodoPage",
   components: { PomodoroCard },
@@ -148,6 +150,7 @@ export default defineComponent({
           alert("Time out ");
           clearTimeout(this.timer);
         } else {
+          // add  0 to let it show 2 digits
           if (parseInt(this.seconds, 10) > 0) {
             this.seconds = (parseInt(this.seconds, 10) - 1 + "").padStart(
               2,

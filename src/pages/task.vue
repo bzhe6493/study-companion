@@ -35,6 +35,7 @@
         <div class="sign-button" @click="to('login')">Log in</div>
       </div>
 
+      <!-- a tabs list container, with it, we can easily travel from one page to another -->
       <div class="tabs-container" v-if="!ifMobile">
         <div
           :class="{
@@ -84,6 +85,7 @@
         </div>
       </div>
 
+      <!-- this is a map list -->
       <task-card
         :ifMobile="ifMobile"
         v-for="(task, index) in tasks"

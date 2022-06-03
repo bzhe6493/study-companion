@@ -54,6 +54,7 @@
         <img src="../assets/dot4.png" alt="dot" />
       </div>
 
+      <!-- a tabs list container, with it, we can easily travel from one page to another -->
       <div class="mobile-tabs-container" v-if="ifMobile" v-show="showTabs">
         <div class="tab-button" @click="to('task')">Task List</div>
         <div class="tab-button" @click="to('kanban')">Kanban Board</div>
@@ -168,6 +169,7 @@ export default defineComponent({
   cursor: pointer;
   text-align: center;
 }
+/* set the specifc height */
 .loginbar .tabs-container .tab-button:nth-child(2) {
   line-height: 33px;
 }

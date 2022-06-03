@@ -42,6 +42,7 @@ import KanbanPage from "./pages/kanban.vue";
 import PomodoroPage from "./pages/pomodoro.vue";
 import AuxPage from "./pages/aux.vue";
 
+// to know which device is using
 function _isMobile() {
   let flag = navigator.userAgent.match(
     /(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i
@@ -58,6 +59,7 @@ export default {
     };
   },
   methods: {
+    // use this to control routes
     changeRoute(v) {
       this.routeName = v;
     },

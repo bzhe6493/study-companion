@@ -62,6 +62,7 @@
         <img src="../assets/dot4.png" alt="dot" />
       </div>
 
+      <!-- a tabs list container, with it, we can easily travel from one page to another -->
       <div class="mobile-tabs-container" v-if="ifMobile" v-show="showTabs">
         <div class="tab-button" @click="to('task')">Task List</div>
         <div class="tab-button" @click="to('kanban')">Kanban Board</div>
@@ -88,6 +89,7 @@
           <input type="email" name="email" id="email" v-model="email" />
         </div>
 
+        <!-- a form input to enter text -->
         <div class="form-item" v-if="!signUp">
           <label for="login-name"> Email or Username </label>
           <input
@@ -98,6 +100,7 @@
           />
         </div>
 
+        <!-- a form input to enter pass -->
         <div class="form-item">
           <label for="password"> Password </label>
           <input
@@ -192,6 +195,7 @@ export default defineComponent({
       const users = localStorage.getItem("users")
         ? JSON.parse(localStorage.getItem("users"))
         : [];
+      // to find is exists in list
       const passLogin =
         users.findIndex(
           (u) =>

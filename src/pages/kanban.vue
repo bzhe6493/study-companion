@@ -35,6 +35,7 @@
         <div class="sign-button" @click="to('login')">Log in</div>
       </div>
 
+      <!-- a tabs list container, with it, we can easily travel from one page to another -->
       <div class="tabs-container" v-if="!ifMobile">
         <div class="tab-button" @click="to('task')">Task List</div>
         <div
@@ -110,6 +111,7 @@ export default defineComponent({
       this.$emit("changeRoute", v);
     },
     deleteTask(index) {
+      // delete it with array api
       this.tasks.splice(index, 1);
     },
     onChangeField(index, name, value) {
