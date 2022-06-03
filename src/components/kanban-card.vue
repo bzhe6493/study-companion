@@ -63,6 +63,7 @@ export default defineComponent({
       });
     },
     refresh() {
+      // get tasks from localStorage
       const tasks = localStorage.getItem("tasks")
         ? JSON.parse(localStorage.getItem("tasks"))
         : [];

@@ -99,6 +99,7 @@ export default defineComponent({
   },
   methods: {
     toggleTabs() {
+      // toggle tabs
       this.showTabs = !this.showTabs;
     },
     to(v) {

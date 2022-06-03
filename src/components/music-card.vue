@@ -91,6 +91,7 @@ export default defineComponent({
   },
   methods: {
     findItem(type) {
+      // find the music item
       if (type === "next") {
         const vIndex =
           this.activeIndex === this.playList.length - 1

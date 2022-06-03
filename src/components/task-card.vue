@@ -225,6 +225,7 @@ export default defineComponent({
         status: this.statusRef.value,
       };
 
+      // trigger parent component's function
       this.$emit("onChangeField", this.index, obj);
     },
   },

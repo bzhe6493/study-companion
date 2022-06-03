@@ -168,6 +168,7 @@ export default defineComponent({
       this.password = "";
     },
     onRegister() {
+      // register your account
       console.log(this.username, this.email, this.password);
       if (!this.username || !this.email || !this.password) {
         alert("You must input username and email and password ! ");
@@ -186,6 +187,7 @@ export default defineComponent({
       this.to("login");
     },
     onLogin() {
+      // check if this user exists
       console.log(this.loginName, this.password);
       const users = localStorage.getItem("users")
         ? JSON.parse(localStorage.getItem("users"))

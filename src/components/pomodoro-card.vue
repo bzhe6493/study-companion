@@ -138,6 +138,7 @@ export default defineComponent({
   },
   components: {},
   data() {
+    // different time in card
     return {
       workMinutes: "00",
       workSeconds: "00",

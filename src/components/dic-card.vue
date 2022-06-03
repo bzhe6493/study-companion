@@ -10,6 +10,7 @@
     </div>
     <div class="main-body">
       <header>
+        <!-- Input for enter a word -->
         <input type="text" placeholder="Search for words" v-model="word" />
 
         <div class="search-wrapper" v-on:click="search">
@@ -28,6 +29,7 @@
             v-for="(para, idx) in definitions"
             :key="para.title"
           >
+            <!-- array start from 0, should + 1 -->
             <div class="title">{{ idx + 1 }}. {{ para.definition }}</div>
             <div class="text">example: {{ para.example }}</div>
           </div>
@@ -56,7 +58,7 @@ export default defineComponent({
     async search() {
       this.helptip = "Loading...";
       const res = await getWordInfo(this.word);
-
+      // get results from the api definitions
       if (Array.isArray(res) && res[0] && res[0].meanings) {
         let defs = [];
 

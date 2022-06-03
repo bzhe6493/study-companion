@@ -114,6 +114,7 @@ export default defineComponent({
     },
   },
   setup(props) {
+    // set ref to control audio
     const musicRef = ref();
     const started = ref(props.playing === props.name);
 

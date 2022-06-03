@@ -127,6 +127,7 @@ export default defineComponent({
       this.$emit("changeRoute", v);
     },
     addTask() {
+      // add tasks
       this.tasks.push({
         title: "",
         subject: "",
@@ -140,6 +141,7 @@ export default defineComponent({
       this.tasks.splice(index, 1);
     },
     onChangeField(index, obj) {
+      // when change field should set it into localStorage
       console.log(index, obj);
       this.tasks[index] = {
         ...this.tasks[index],

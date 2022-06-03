@@ -7,6 +7,7 @@
       <div class="clock-wrapper">
         <img class="clock" src="../assets/clock.png" alt="clock" />
       </div>
+      <!-- draw dealline  -->
       <div class="text">{{ deadline || "task deadline" }}</div>
     </footer>
   </div>

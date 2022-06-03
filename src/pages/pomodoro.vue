@@ -138,6 +138,7 @@ export default defineComponent({
     start(minutes, seconds) {
       this.minutes = minutes;
       this.seconds = seconds;
+      // kill timer before set it
       clearTimeout(this.timer);
       this.timer = setInterval(() => {
         if (
