@@ -1,3 +1,9 @@
+# Website Homepage
+
+You can open the website by below url, this website also can be opened by mobile advices.
+
+[https://bzhe6493.github.io/study-companion/](https://bzhe6493.github.io/study-companion/)
+
 # Introduction about this website
 
 "Learning" apps can help users better accomplish programming tasks. Users can divide a large task into several small tasks to complete. Create new tasks at any time. Each time it is created, a new panel is created for users to fill in task requirements, time requirements, etc. I want to change a task that was previously filled in incorrectly. The user can use the editing function.
